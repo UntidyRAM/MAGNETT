@@ -1,4 +1,4 @@
-# MAGNETT
+# MAGNETT 🧲
 <b>M</b>agnetometer<br/>
 <b>A</b>ugmentation<br/>
 <b>G</b>adget for<br/>
@@ -7,4 +7,4 @@
 <b>T</b>elemetry<br/>
 <b>T</b>ransmission<br/>
 <br/>
-Huan Lei & Nicholas Warrener 
+By Huan Lei & Nicholas Warrener 
