@@ -10,3 +10,8 @@
 MAGNETT is a device (or gadget) that allows one to retrieve measurements taken from a G-856 (manufactured by Geometrics, Inc) over a WiFi connection.  
 
 By Huan Lei & Nicholas Warrener 
+
+# Drivers 
+Drivers used to interact with the LCD and parse the GPS NMEA sentences:
+LCD: https://github.com/dhylands/python_lcd <br/>
+GPS: https://github.com/peterhinch/micropython-async
