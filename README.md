@@ -13,5 +13,5 @@ By Huan Lei & Nicholas Warrener
 
 # Drivers 
 Drivers used to interact with the LCD and parse the GPS NMEA sentences:
-LCD: https://github.com/dhylands/python_lcd <br/>
-GPS: https://github.com/peterhinch/micropython-async
+LCD (machine_i2c_lcd.py and lcd_api.py): https://github.com/dhylands/python_lcd <br/>
+GPS (AS_GPS.py): https://github.com/peterhinch/micropython-async
