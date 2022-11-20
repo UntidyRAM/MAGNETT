@@ -12,10 +12,6 @@ from time import sleep
 from AS_GPS import AS_GPS
 from math import floor, modf
 
-# Globals
-rs232DictArr = []
-gpsDictArr = []
-
 # LCD
 I2C_ADDR = 0x27
 totalRows = 2
@@ -26,14 +22,18 @@ lcd_obj = I2cLcd(i2c, I2C_ADDR, totalRows, totalColumns)
 lcd_obj.putstr("Waiting for GPS")
 
 # Control the MOSFETs for power selection.
-# Be careful not to turn both of them on if you have two supplies connected >.<
+# Be careful not to turn both of them on if you have two supplies connected
 ext_pwr_status = Pin(19, Pin.IN)
 ext_pwr_ctrl = Pin(18, Pin.OUT)
-ext_pwr_ctrl.on() # Turn off external power because we don't want to kill the regulator (need to replace with a new buck converter).
+ext_pwr_ctrl.on() # Turn off external power.
 
 usb_pwr_stats = Pin(4, Pin.IN)
 usb_pwr_ctrl = Pin(5, Pin.OUT)
 usb_pwr_ctrl.off() # Turn on USB power for charging.
+
+# Globals
+rs232DictArr = []
+gpsDictArr = []
 
 # Magnetometer serial
 magSerial = UART(1, 9600, bits=7, parity=None, stop=2, rx=16, tx=10)
@@ -67,8 +67,6 @@ async def gpsRecv():
             while True:
                 pin_state = magSyncPin.value()
                 if not pin_state and last_pin_state:
-                    # read gps
-                    print("Reading GPS\n")
                     await gps.data_received(position=True, altitude=True)
                     lcd_obj.clear()
                     lcd_obj.putstr("lat:" + gps.latitude_string(coord_format=4) + "\nlon:" + gps.longitude_string(coord_format=4))
@@ -102,7 +100,6 @@ async def rs232Recv(uart):
 
         # Format the field reading to have its decimal point. A raw value is 517643 which is formatted to 51764.3
         field = field[:len(field) - 1] + "." + field[len(field) - 1:]
-
         rs232DictArr.append({"lineNum": str(lineNum), "julianDay": str(julianDay), "time": str(time), "stationNum": str(stationNum), "field": str(field)})
 
         await asyncio.sleep_ms(100)
@@ -121,8 +118,10 @@ async def index(request, response):
     # This if statement should just check that each magnetometer reading has a corresponding gps reading.
     if len(rs232DictArr) != 0 and len(gpsDictArr) != 0 and len(rs232DictArr) == len(gpsDictArr):
         #vals = "lineNum, julianDay, time, stationNum, field, lat, lon, altitude\b"
-        for i in range(len(rs232DictArr)):
-            vals += json.dumps(rs232DictArr[i]) + json.dumps(gpsDictArr[i])
+        for x in range(len(rs232DictArr)):
+            rs232DictArr[x].update(gpsDictArr[x])
+
+        vals = json.dumps(rs232DictArr)
     else:
         # Our device is just being used to pull readings from the magnetometer. It wasn't used to save GPS values for each reading.
         if len(rs232DictArr) != 0 and len(gpsDictArr) == 0:
@@ -158,30 +157,27 @@ async def index(request, response):
                 border-radius: 25px;
             }
         </style>
-        <script>/*
-            function download(filename, text) {
-                let element = document.createElement('a');
-                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-                element.setAttribute('download', filename);
-
-                element.style.display = 'none';
-                document.body.appendChild(element);
-                element.click();
-                document.body.removeChild(element);
-            }*/
-        </script>
     </head>
 
     <script>
     function download()
     {
-        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify('""" + vals + """'));
-        var readings = document.createElement('a');
-        readings.setAttribute("href",     dataStr);
-        readings.setAttribute("download", "measurements.txt");
-        document.body.appendChild(readings); // required for firefox
-        readings.click();
-        readings.remove();
+        const json3 = {"count": """+str(len(rs232DictArr))+""", "items":""" + str(vals) + """}
+        const items = json3.items
+        const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
+        const header = Object.keys(items[0])
+        const csv = [
+            header.join(','), // header row first
+            ...items.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
+        ].join("\\r\\n")
+
+        var link = document.createElement('a');
+        link.setAttribute('href', 'data:text;charset=utf-8,' + encodeURIComponent(csv));
+        link.setAttribute('download', 'measurements.txt');
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
     </script>
 
@@ -317,7 +313,6 @@ async def graph(request, response):
         yValue = yValue + "'"+(data['field']) + "',"   
     xValue = xValue[:-1]
     yValue = yValue[:-1]
-    #print(xValue)
     await response.send("""
     <!DOCTYPE html>
     <html>
@@ -374,7 +369,6 @@ async def graph(request, response):
     
           
 async def main():
-    # -----------------{Act as a router (this is how it will work in our final version)}-----------------
     sta_if = network.WLAN(network.AP_IF)
     sta_if.active(True)
     sta_if.config(essid='MAGNETT', password='123456789')
@@ -390,8 +384,6 @@ async def main():
     loop.create_task(rs232Recv(magSerial))
     loop.create_task(gpsRecv())
 
-
-# These three lines are what actually make everything run.
 loop = asyncio.get_event_loop()
 loop.create_task(main())
 loop.run_forever()
