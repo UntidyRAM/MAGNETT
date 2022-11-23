@@ -12,7 +12,26 @@
 MAGNETT is a proof of concept device (or gadget) that allows one to retrieve measurements taken from a G-856AX (manufactured by Geometrics, Inc) over a WiFi connection. It has the ability to save a GPS position for each measurement taken by the G-856AX. It also displays the retrieved data in a table and graph on the web server.  
 </p>
 
+<p align="justify">
+Our device makes use of an ESP32 and a GPS (amongst other less notable components) to realise the features mentioned above. 
+</p>
+
 By Huan Lei & Nicholas Warrener 
+
+# Images
+<p align="justify">
+A top view image of our device can be seen below. Our device uses a 5000mAh LiPo battery. 
+</p>
+<br/>
+
+![An image showing the top view of our device. A battery, USB port, two MOSFETs, a display, and the GPS antenna can be seen. ](images/close_up.jpg "Top view of MAGNETT.")
+
+<p align="justify">
+Our device and it's custom connector can be seen inside of the carrying case for a G-856AX. 
+</p>
+<br/>
+
+![An image showing our device sitting inside the carrying case for a Geometrics G-856AX proton precession magnetometer. The magnetometer's console and sensor can be seen as well as the poles used to hold up the sensor. ](images/case.jpg "MAGNETT with a G-856AX.")
 
 # Dependencies 
 ## LCD
