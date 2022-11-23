@@ -7,14 +7,16 @@
 <b>T</b>elemetry<br/>
 <b>T</b>ransmission<br/>
 <br/>
+<p align="justify">
 MAGNETT is a proof of concept device (or gadget) that allows one to retrieve measurements taken from a G-856AX (manufactured by Geometrics, Inc) over a WiFi connection. It has the ability to save a GPS position for each measurement taken by the G-856AX. It also displays the retrieved data in a table and graph on the web server.  
+</p>
 
 By Huan Lei & Nicholas Warrener 
 
 # Dependencies 
 ## LCD and GPS
-LCD (machine_i2c_lcd.py and lcd_api.py): https://github.com/dhylands/python_lcd <br/>
-GPS (AS_GPS.py): https://github.com/peterhinch/micropython-async
+[Python_LCD](https://github.com/dhylands/python_lcd) (machine_i2c_lcd.py and lcd_api.py)<br/>
+[Asynchronous GPS](https://github.com/peterhinch/micropython-async) (AS_GPS.py)
 
 ## Webserver
 Bootstrap V5.2.2 (bootstrap.min.css): https://github.com/twbs/bootstrap/tree/v5.2.2/site/content/docs/5.2 <br/>
