@@ -19,6 +19,7 @@ Our device makes use of an ESP32 and a GPS (amongst other less notable component
 By Huan Lei & Nicholas Warrener 
 
 # Images
+## Device
 <p align="justify">
 A top view image of our device can be seen below. Our device uses a 5000mAh LiPo battery. 
 </p>
@@ -32,6 +33,25 @@ Our device and it's custom connector can be seen inside of the carrying case for
 <br/>
 
 ![An image showing our device sitting inside the carrying case for a Geometrics G-856AX proton precession magnetometer. The magnetometer's console and sensor can be seen as well as the poles used to hold up the sensor. ](images/case.jpg "MAGNETT with a G-856AX.")
+
+## Website 
+![Our device's homepage displaying three buttons: Table, Graph and Download data.](images/homePage.jpg "MAGNETT home page.")
+
+<p align="justify">
+The data in the next three images was taken from a G-856AX. The GPS data corresponding to each magnetic field reading was taken using MAGNETT's built-in NEO-6M GPS. The GPS data has been censored for privacy reasons. 
+</p>
+<br/>
+
+![A webpage displaying a table with three rows of data.](images/table.jpg "MAGNETT table page.")
+
+<br/>
+
+![A line graph displaying a plot of the magnetic field strength versus time.](images/graph.jpg "MAGNETT graph page.")
+
+<br/>
+
+
+![A screenshot of a text document containing data downloaded from our device.](images/downloadedData.jpg "MAGNETT downloaded data.")
 
 # Dependencies 
 ## LCD
