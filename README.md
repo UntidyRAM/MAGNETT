@@ -62,7 +62,7 @@ Our project uses a generic 1609 LCD with an I2C 'backpack' to reduce the number 
 
 ## GPS
 <p align="justify">
-We used the <code>as_GPS.py</code> driver from the <a href="https://github.com/peterhinch/micropython-async">micropython-async</a> library to enable asynchronously parse the NMEA sentences from the GPS. Just make sure to use V2 and not V3 as the newer version contains functions not supported by the version of micropython-async running on TinyWeb.
+We used the <code>as_GPS.py</code> driver from the <a href="https://github.com/peterhinch/micropython-async">micropython-async</a> library to asynchronously parse the NMEA sentences from the GPS. Just make sure to use V2 and not V3 as the newer version contains functions not supported by the version of micropython-async running on TinyWeb.
 </p>
 
 ## Webserver
@@ -71,3 +71,8 @@ We used the <code>as_GPS.py</code> driver from the <a href="https://github.com/p
 [TinyWeb](https://github.com/belyalov/tinyweb) - The latest release (V1.3.5) is from 2020 which means we had to use an older version of the as_GPS library.
 
 Assembly instructions and circuit designs are coming soon!
+
+# Acknowledgements
+<p align="justify">
+We would like to thank Prof K. Nixon for supervising our project and providing us with valuable feedback at the review meetings. We would also like to thank Prof S. Webb of the Geoscience Department for providing us with the necessary hardware as well as giving us valuable feedback and information which helped us contextualize the design. 
+</p>
