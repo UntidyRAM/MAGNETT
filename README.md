@@ -70,8 +70,6 @@ We used the <code>as_GPS.py</code> driver from the <a href="https://github.com/p
 [Chart.js](https://www.chartjs.org/docs/2.9.4/) - We used an older version (V2.9.4) of this library because we ran into issues running the latest version<br/>
 [TinyWeb](https://github.com/belyalov/tinyweb) - The latest release (V1.3.5) is from 2020 which means we had to use an older version of the as_GPS library.
 
-Assembly instructions and circuit designs are coming soon!
-
 # Acknowledgements
 <p align="justify">
 We would like to thank Prof K. Nixon for supervising our project and providing us with valuable feedback at the review meetings. We would also like to thank Prof S. Webb of the Geoscience Department for providing us with the necessary hardware as well as giving us valuable feedback and information which helped us contextualize the design. 
