@@ -1,3 +1,6 @@
+# Copyright (c) 2022 Huan Lei and Nicholas Warrener 
+# Released under the MIT License (MIT) - see LICENSE file
+
 import tinyweb
 import network
 import time
@@ -194,9 +197,6 @@ async def index(request, response):
         <button class="btn btn-primary" onclick="download()">Download Magnetometer value as txt</button> 
         <a id="readings" style="display:none"></a>
 
-        <!--<form onsubmit="download('Magnetometer Values', 'vals')">
-            <input type="submit" class="btn btn-primary" value="Download readings as txt">
-        </form>-->
         </p>
     </body>
     </html>
