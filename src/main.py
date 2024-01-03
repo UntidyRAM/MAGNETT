@@ -98,8 +98,8 @@ async def rs232Recv(uart):
         time = str(time[:2]) + ":" + str(time[2:4]) + ":" + str(time[4:6])
 
         # Replace any question marks with zeros. This happens because of a bug in the G-856AX's serial code.
-        if '?' in field:
-            field = field.replace('?', '0')
+        # if '?' in field:
+        #    field = field.replace('?', '0')
 
         # Format the field reading to have its decimal point. A raw value is 517643 which is formatted to 51764.3
         field = field[:len(field) - 1] + "." + field[len(field) - 1:]
