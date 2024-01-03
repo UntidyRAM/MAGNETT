@@ -97,6 +97,8 @@ async def rs232Recv(uart):
         # Format the time so it changes from hhmmss to hh:mm:ss.
         time = str(time[:2]) + ":" + str(time[2:4]) + ":" + str(time[4:6])
 
+        # EDIT: The following commented out code is not correcting a bug! The '?' is intentional and indicates that the measurement was made in a high
+        #       gradient.
         # Replace any question marks with zeros. This happens because of a bug in the G-856AX's serial code.
         # if '?' in field:
         #    field = field.replace('?', '0')
