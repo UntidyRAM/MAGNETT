@@ -10,13 +10,13 @@
 
 <p align="justify">
 MAGNETT is a proof of concept device (or gadget) that allows one to retrieve measurements taken from a G-856AX (manufactured by Geometrics, Inc) over a WiFi connection. It has the ability to save a GPS position for each measurement taken by the G-856AX. It also displays the retrieved data in a table and graph on the web server.  
-
-This project forms part of our fourth year investigating course, for electrical engineering, at the University of the Witwatersrand, Johannesburg. 
 </p>
 
 <p align="justify">
 Our device makes use of an ESP32 and a GPS (amongst other less notable components) to realise the features mentioned above. 
 </p>
+
+This project forms part of our fourth year investigating course, for electrical engineering, at the University of the Witwatersrand, Johannesburg. 
 
 By Huan Lei & Nicholas Warrener 
 
